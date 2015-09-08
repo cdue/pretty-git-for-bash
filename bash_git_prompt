@@ -1,0 +1,53 @@
+#!/bin/bash
+
+########################################################################
+# Create a custom prompt with some useful Git info 
+########################################################################
+
+# Load some colors constants
+source ~/pretty-git-for-bash/bash_colors
+source ~/pretty-git-for-bash/bash_unicode_chars
+
+# Be sure to use a unicode compliant locale (to be able to display unicode chars in Prompt)
+export LC_ALL="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+
+# Parse 'git status' result and put some info in PS1 prompt.
+function parse_git_status {
+  git rev-parse --git-dir &> /dev/null
+  git_status="$(git status 2> /dev/null)"
+
+  # check if current directory is a git dir (if true, 'git status' must contain "On branch xxx")
+  if [[ ! -z `echo "${git_status}" | grep "On branch"` ]]; then
+    branch_name=`echo "${git_status}" | grep "On branch" | sed "s/.*On branch \(.*\)/\1/"`
+
+    # check if local branch is ahead/behing of remote branch, or if both have diverged.
+    if [[ ! -z `echo "${git_status}" | grep "have diverged"` ]]; then
+      remote=" ${FG_YELLOW}<>"
+    else
+      if [[ ! -z `echo "${git_status}" | grep "ahead"` ]]; then
+        remote=" ${BG_GREEN_FG_BLUE}>"
+      else
+        if [[ ! -z `echo "${git_status}" | grep "behind"` ]]; then
+          remote=" ${FG_YELLOW}<"
+        fi
+      fi
+    fi
+    
+    # check if we are working on clean directory (no untracked file) or not
+    if [[ ! ${git_status}} == *"working directory clean"* ]]; then
+      state="${BG_GREEN_FG_RED}¤"
+    fi
+
+    echo "${BG_GREEN_FG_GREEN} (${branch_name}${remote}${state}${BG_GREEN_FG_GREEN}) "
+  fi
+}
+
+function prompt_func() {
+  PS1="${BG_YELLOW_FG_WHITE} \u@\h ${BG_BLUE_FG_BLUE} \W $(parse_git_status)${COLOR_OFF} > "
+}
+
+PROMPT_COMMAND=prompt_func
+

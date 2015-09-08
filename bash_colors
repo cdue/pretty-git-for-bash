@@ -1,0 +1,37 @@
+#!/bin/bash
+
+########################################################################
+# Define some colors constants
+########################################################################
+
+# Reset
+COLOR_OFF='\[\033[0m\]'       # Text Reset
+
+# Foreground Colors
+FG_BLACK='\[\033[0;30m\]'     # Black
+FG_RED='\[\033[0;31m\]'       # Red
+FG_GREEN='\[\033[0;32m\]'     # Green
+FG_YELLOW='\[\033[0;33m\]'    # Yellow
+FG_BLUE='\[\033[0;34m\]'      # Blue
+FG_PURPLE='\[\033[0;35m\]'    # Purple
+FG_CYAN='\[\033[0;36m\]'      # Cyan
+FG_WHITE='\[\033[0;37m\]'     # White
+
+# Background Colors
+BG_BLACK='\[\033[40m\]'       # Black
+BG_RED='\[\033[41m\]'         # Red
+BG_GREEN='\[\033[42m\]'       # Green
+BG_YELLOW='\[\033[43m\]'      # Yellow
+BG_BLUE='\[\033[44m\]'        # Blue
+BG_PURPLE='\[\033[45m\]'      # Purple
+BG_CYAN='\[\033[46m\]'        # Cyan
+BG_WHITE='\[\033[47m\]'       # White
+
+# Mixed BG and FG Colors
+BG_BLUE_FG_BLUE='\[\033[1;34;44m\]'
+BG_YELLOW_FG_YELLOW='\[\033[1;33;43m\]'
+BG_YELLOW_FG_WHITE='\[\033[0;37;43m\]'
+BG_GREEN_FG_GREEN='\[\033[1;32;42m\]'
+BG_GREEN_FG_RED='\[\033[0;31;42m\]'
+BG_GREEN_FG_BLUE='\[\033[0;34;42m\]'
+

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+########################################################################
+# Load git prompt and aliases
+########################################################################
+
+source ~/pretty-git-for-bash/bash_git_prompt
+source ~/pretty-git-for-bash/bash_git_aliases
+
