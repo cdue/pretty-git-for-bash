@@ -25,13 +25,13 @@ function parse_git_status {
 
     # check if local branch is ahead/behing of remote branch, or if both have diverged.
     if [[ ! -z `echo "${git_status}" | grep "have diverged"` ]]; then
-      remote=" ${FG_YELLOW}<>"
+      remote=" ${BG_GREEN_FG_YELLOW}<>"
     else
       if [[ ! -z `echo "${git_status}" | grep "ahead"` ]]; then
         remote=" ${BG_GREEN_FG_BLUE}>"
       else
         if [[ ! -z `echo "${git_status}" | grep "behind"` ]]; then
-          remote=" ${FG_YELLOW}<"
+          remote=" ${BG_GREEN_FG_YELLOW}<"
         fi
       fi
     fi
