@@ -25,13 +25,13 @@ function parse_git_status {
 
     # check if local branch is ahead/behing of remote branch, or if both have diverged.
     if [[ ! -z `echo "${git_status}" | grep "have diverged"` ]]; then
-      remote=" ${BG_GREEN_FG_YELLOW}<>"
+      remote=" ${BG_GREEN_FG_PURPLE}<>"
     else
       if [[ ! -z `echo "${git_status}" | grep "ahead"` ]]; then
         remote=" ${BG_GREEN_FG_BLUE}>"
       else
         if [[ ! -z `echo "${git_status}" | grep "behind"` ]]; then
-          remote=" ${BG_GREEN_FG_YELLOW}<"
+          remote=" ${BG_GREEN_FG_BLUE}<"
         fi
       fi
     fi
@@ -41,12 +41,12 @@ function parse_git_status {
       state="${BG_GREEN_FG_RED}¤"
     fi
 
-    echo "${BG_GREEN_FG_GREEN} (${branch_name}${remote}${state}${BG_GREEN_FG_GREEN}) "
+    echo "${BG_GREEN_FG_BLACK} (${branch_name}${remote}${state}${BG_GREEN_FG_BLACK}) "
   fi
 }
 
 function prompt_func() {
-  PS1="${BG_YELLOW_FG_WHITE} \u@\h ${BG_BLUE_FG_BLUE} \W $(parse_git_status)${COLOR_OFF} > "
+  PS1="${BG_YELLOW_FG_BLACK} \u@\h ${BG_BLUE_FG_WHITE} \W $(parse_git_status)${COLOR_OFF} > "
 }
 
 PROMPT_COMMAND=prompt_func
